@@ -19,5 +19,5 @@
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/sobi.git
+   git clone https://github.com/Ajokatem/sobi.git
    cd sobi

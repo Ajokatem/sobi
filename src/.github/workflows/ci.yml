@@ -13,10 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Dummy test
-        run: echo "Running fake test just to trigger check"
+      - name: Dummy test step
+        run: echo "Running a test..."
+
 
 

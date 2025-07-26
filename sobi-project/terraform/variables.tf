@@ -3,7 +3,7 @@ variable "resource_group" {
 }
 
 variable "location" {
-  default = "East Africa"
+  default = "southafricanorth"
 }
 
 variable "mysql_admin" {

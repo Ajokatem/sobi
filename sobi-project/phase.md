@@ -1,7 +1,7 @@
 #  Sobi Project - Phase 2 Submission
 
 ##  Live Public URL
-https://sobi-api.azurewebsites.net/
+https://sobiacr.azurecr.io/
 
 > This is the publicly accessible backend API deployed to Azure App Service using Docker and Terraform.
 

@@ -3,4 +3,6 @@ node_modules
 .env
 .terraform/
 *.exe
+*.tfstate
+*.tfstate.backup
 

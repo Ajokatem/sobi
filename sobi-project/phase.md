@@ -1,7 +1,7 @@
 #  Sobi Project - Phase 2 Submission
 
 ##  Live Public URL
-https://sobiacr.azurecr.io/
+https://sobi-api-b9cgg2hffmauhce0.southafricanorth-01.azurewebsites.net/api/v1/health 
 
 > This is the publicly accessible backend API deployed to Azure App Service using Docker and Terraform.
 
@@ -10,13 +10,13 @@ https://sobiacr.azurecr.io/
 ##  Screenshots of Provisioned Resources
 
 ### 1. Azure Resource Group
-![Resource Group](./screenshots/resource-group.png)
+![Resource Group](./screenshots/Screenshot%202025-07-30%20172648.png)
 
 ### 2. Azure MySQL Flexible Server
 ![MySQL Server](./screenshots/mysql-server.png)
 
 ### 3. Azure Container Registry (ACR)
-![Container Registry](./screenshots/acr.png)
+![Container Registry](./screenshots/Screenshot%202025-07-30%20174833.png)
 
 ---
 

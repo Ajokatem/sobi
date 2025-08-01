@@ -5,4 +5,5 @@ node_modules
 *.exe
 *.tfstate
 *.tfstate.backup
+terraform.exe
 

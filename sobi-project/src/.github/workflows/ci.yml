@@ -1,23 +1,71 @@
-name: build
+name: Deploy to Azure
 
 on:
   push:
     branches:
-      - develop
-  pull_request:
-    branches:
-      - develop
+      - main
+  workflow_dispatch:
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
+    env:
+      ACR_NAME: ${{ secrets.ACR_NAME }}
+      AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}
+      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Dummy test step
-        run: echo "Running a test..."
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./src
+
+      - name: Run unit tests
+        run: npm test
+        working-directory: ./src
+
+      - name: Install Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'table'
+          exit-code: '1'   # fail if vulnerabilities found
+          ignore-unfixed: true
+
+      - name: Build Docker image
+        run: |
+          docker build -t $ACR_NAME.azurecr.io/sobi-backend:latest .
+          docker images
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Push Docker image to ACR
+        run: |
+          az acr login --name $ACR_NAME
+          docker push $ACR_NAME.azurecr.io/sobi-backend:latest
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
+          images: ${{ secrets.ACR_NAME }}.azurecr.io/sobi-backend:latest
+
+      - name: Log deployment complete
+        run: echo "Deployment to Azure Web App completed successfully."
+
+      - name: Simulated Monitoring Hook (Optional)
+        run: echo "Monitoring enabled (placeholder for Prometheus/Grafana or App Insights)"
 
 

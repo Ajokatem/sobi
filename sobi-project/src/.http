@@ -1,0 +1,73 @@
+### Healthcheck (no auth needed ideally)
+GET https://sobi-api-b9cgg2hffmauhce0.southafricanorth-01.azurewebsites.net/api/v1/health
+Content-Type: application/json
+
+###
+
+### Register a New User
+POST https://sobi-api-b9cgg2hffmauhce0.southafricanorth-01.azurewebsites.net/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "username": "Kur Yuang",
+  "email": "kuryyuang@gmainl.com",
+  "password": "Kur@1234"
+}
+
+###
+
+### Login User
+POST https://sobi-api-b9cgg2hffmauhce0.southafricanorth-01.azurewebsites.net/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "ajok@example.com",
+  "password": "Test@1234"
+}
+
+###
+
+### Create Tree Planting Event (requires auth)
+POST https://sobi-api-b9cgg2hffmauhce0.southafricanorth-01.azurewebsites.net/api/v1/treeplanting-events
+Content-Type: application/json
+Authorization: Bearer {{PUT_YOUR_TOKEN_HERE}}
+
+{
+  "title": "Community Tree Planting",
+  "description": "Join us in planting trees along the Nile banks to fight climate change.",
+  "location": "Juba Riverside",
+  "latitude": 4.8517,
+  "longitude": 31.5825,
+  "eventDate": "2025-08-15T09:00:00Z"
+}
+
+###
+
+### Get All Tree Planting Events (requires auth)
+GET https://sobi-api-b9cgg2hffmauhce0.southafricanorth-01.azurewebsites.net/api/v1/treeplanting-events
+Content-Type: application/json
+Authorization: Bearer {{PUT_YOUR_TOKEN_HERE}}
+
+###
+
+### Get Specific Tree Planting Event by ID (requires auth)
+GET https://sobi-api-b9cgg2hffmauhce0.southafricanorth-01.azurewebsites.net/api/v1/treeplanting-events/1
+Content-Type: application/json
+Authorization: Bearer {{PUT_YOUR_TOKEN_HERE}}
+
+###
+
+### List Users (requires auth)
+GET https://sobi-api-b9cgg2hffmauhce0.southafricanorth-01.azurewebsites.net/api/v1/users
+Content-Type: application/json
+Authorization: Bearer {{PUT_YOUR_TOKEN_HERE}}
+
+###
+
+### Get User by ID (requires auth)
+GET https://sobi-api-b9cgg2hffmauhce0.southafricanorth-01.azurewebsites.net/api/v1/users/2
+Content-Type: application/json
+Authorization: Bearer {{PUT_YOUR_TOKEN_HERE}}
+
+###
+

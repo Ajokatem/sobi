@@ -2,43 +2,6 @@ name: Deploy to Azure
 
 on:
   push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main, develop ]
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-
-    env:
-      ACR_NAME: ${{ secrets.ACR_NAME }}
-      AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}
-      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
-        run: npm install
-        working-directory: ./src
-
-      - name: Run unit tests
-        run: npm test
-        working-directory: ./src
-
-      - name: Install Trivy
-        uses: aquasecurity/trivy-action@master
-        with:
-          scan-type: 'fs'
-          scan-ref: '.'
-          format: 'table'
-          exit-code: '1'
           ignore-unfixed: true
 
       - name: Build Docker image
@@ -60,10 +23,10 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
-          images: ${{ env.ACR_NAME }}.azurecr.io/sobi-backend:latest
+
 
       - name: Log deployment complete
         run: echo "Deployment to Azure Web App completed successfully."
 
       - name: Simulated Monitoring Hook (Optional)
-        run: echo "Monitoring enabled (placeholder for Prometheus/Grafana or App
+

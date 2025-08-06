@@ -23,7 +23,7 @@
       const location = document.getElementById('location').value;
       const date = document.getElementById('date').value;
 
-      const res = await fetch('https://your-api-url/api/events', {
+      const res = await fetch('http://localhost:3000/api/events', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

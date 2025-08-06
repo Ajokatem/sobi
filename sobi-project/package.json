@@ -1,8 +1,0 @@
-{
-  "devDependencies": {
-    "supertest": "^7.1.1"
-  },
-  "dependencies": {
-    "applicationinsights": "^3.8.0"
-  }
-}

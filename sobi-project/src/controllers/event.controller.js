@@ -1,22 +1,35 @@
-const { getDB } = require('../config/db');
+const { Event } = require('../models');
 
 exports.createEvent = async (req, res) => {
-  const { title, location, date } = req.body;
   try {
-    const db = getDB();
-    await db.execute('INSERT INTO events (title, location, date) VALUES (?, ?, ?)', [title, location, date]);
-    res.status(201).json({ message: 'Event created' });
-  } catch (err) {
-    res.status(500).json({ message: 'Failed to create event', error: err.message });
+    const event = await Event.create(req.body);
+    res.status(201).json(event);
+  } catch {
+    res.status(500).json({ error: 'Create failed' });
   }
 };
 
-exports.getAllEvents = async (req, res) => {
-  try {
-    const db = getDB();
-    const [events] = await db.execute('SELECT * FROM events');
-    res.json(events);
-  } catch (err) {
-    res.status(500).json({ message: 'Failed to fetch events', error: err.message });
-  }
+exports.getEvents = async (_req, res) => {
+  const events = await Event.findAll();
+  res.json(events);
 };
+
+exports.getEvent = async (req, res) => {
+  const event = await Event.findByPk(req.params.id);
+  event ? res.json(event) : res.status(404).json({ error: 'Not found' });
+};
+
+exports.updateEvent = async (req, res) => {
+  const event = await Event.findByPk(req.params.id);
+  if (!event) return res.status(404).json({ error: 'Not found' });
+  await event.update(req.body);
+  res.json(event);
+};
+
+exports.deleteEvent = async (req, res) => {
+  const event = await Event.findByPk(req.params.id);
+  if (!event) return res.status(404).json({ error: 'Not found' });
+  await event.destroy();
+  res.json({ message: 'Deleted' });
+};
+

@@ -1,7 +1,7 @@
 #  Sobi Project - Phase 2 Submission
 
 ##  Live Public URL
-https://sobi-api-b9cgg2hffmauhce0.southafricanorth-01.azurewebsites.net/api/v1/health 
+https://sobi-app.azurewebsites.net/ 
 
 > This is the publicly accessible backend API deployed to Azure App Service using Docker and Terraform.
 

@@ -1,7 +1,12 @@
 node_modules
+npm-debug.log
 Dockerfile
 docker-compose.yml
 *.md
 *.log
 .env
 .git
+.vscode
+terraform.tfstate
+terraform.tfstate.*
+.terraform

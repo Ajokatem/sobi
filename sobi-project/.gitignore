@@ -1,9 +1,34 @@
-node_modules
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv environment files
 .env
-.terraform/
+.env.*
+
+# Docker
+*.local
+docker-compose.override.yml
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Terraform
 terraform.tfstate
-terraform.tfstate.backup
-*.tfstate
-*.tfstate.backup
-*.exe
-terraform.exe
+terraform.tfstate.*
+.terraform/
+crash.log
+
+# VSCode
+.vscode/
+
+# Misc
+*.swp
+*.swo

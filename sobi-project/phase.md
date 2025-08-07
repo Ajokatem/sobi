@@ -10,26 +10,26 @@ https://sobi-app.azurewebsites.net/
 ## Screenshots of Provisioned Resources
 
 ### 1. Azure Resource Group
-![Resource Group](./screenshots/Screenshot%202025-07-30%20172648.png)
+![Resource Group](./screenshots/Screenshot%202025-08-07%20080824.png)
 
 ### 2. Azure MySQL Flexible Server
 ![MySQL Server](./screenshots/mysql-server.png)
 
 ### 3. Azure Container Registry (ACR)
-![Container Registry](./screenshots/Screenshot%202025-07-30%20174833.png)
+![Container Registry](./screenshots/Screenshot%202025-08-06%20014819.png)
 
 ### 4. Azure App Service (Web App)
-![App Service](./screenshots/app-service.png)
+![App Service](./screenshots/Screenshot%202025-08-07%20081052.png)
 
 ### 5. Application Insights (Monitoring)
-![App Insights](./screenshots/app-insights.png)
+![App Insights](./screenshots/Screenshot%202025-08-07%20080153.png)
 
 ---
 
 ## Peer Review
 
 ### Pull Request Reviewed:
-[Peer PR Reviewed](https://github.com/Abukduot/HerTech/pull/15)
+[Peer PR Reviewed](https://github.com/Ajokatem/sobi/pull/23#pullrequestreview-3094867951)
 
 ### Review Summary:
 I reviewed my peer’s Terraform configuration and Docker deployment setup. My comments included:
@@ -63,7 +63,7 @@ Despite the complexity, this experience has strengthened my confidence in managi
 ## Monitoring & Security
 
 ### Application Insights
-![App Insights](./screenshots/app-insights.png)
+![App Insights](./screenshots/Screenshot%202025-08-07%20080153.png)
 
 ### Security Scan
 ![Trivy Scan](./screenshots/trivy-scan.png)
@@ -80,7 +80,7 @@ Despite the complexity, this experience has strengthened my confidence in managi
 
 ## CI/CD Pipeline
 
-![GitHub Actions](./screenshots/github-actions.png)
+![GitHub Actions](https://github.com/Ajokatem/sobi/actions)
 
 ---
 

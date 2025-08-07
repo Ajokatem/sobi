@@ -1,10 +1,25 @@
-name: CI/CD Pipeline
+name: CI/CD Pipeline - sobi
 
 on:
   push:
-    branches: [develop, main]
+    branches: [main, develop]
   pull_request:
-    branches: [develop, main]
+    branches: [main, develop]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+        - staging
+        - production
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
 
 env:
   ACR_NAME: ${{ secrets.ACR_NAME }}
@@ -13,10 +28,9 @@ env:
 jobs:
   build-test-scan-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4

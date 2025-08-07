@@ -1,0 +1,64 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  ACR_NAME: ${{ secrets.ACR_NAME }}
+  AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}
+
+jobs:
+  build-test-scan-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./src
+
+      - name: Run tests
+        run: npm test
+        working-directory: ./src
+
+      - name: Dependency vulnerability scan
+        run: npx audit-ci --moderate
+        working-directory: ./src
+
+      - name: Build Docker image
+        run: docker build -t $ACR_NAME.azurecr.io/sobi-backend:latest .
+
+      - name: Container image scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.ACR_NAME }}.azurecr.io/sobi-backend:latest
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Login to ACR
+        run: az acr login --name $ACR_NAME
+
+      - name: Push Docker image to ACR
+        run: docker push $ACR_NAME.azurecr.io/sobi-backend:latest
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          images: ${{ env.ACR_NAME }}.azurecr.io/sobi-backend:latest
+
+      - name: Log deployment complete
+        run: echo "Deployment to Azure Web App completed successfully."

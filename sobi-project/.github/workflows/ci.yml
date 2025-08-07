@@ -1,3 +1,4 @@
+ develop
 name: CI/CD Pipeline - Sobi
 
 on:
@@ -21,9 +22,19 @@ permissions:
   security-events: write
   actions: read
 
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [develop, main]
+  pull_request:
+    branches: [develop, main]
+ main
+
 env:
   ACR_NAME: ${{ secrets.ACR_NAME }}
   AZURE_WEBAPP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}
+develop
   RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
 
 jobs:
@@ -93,6 +104,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+
+jobs:
+  build-test-scan-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        main
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -136,4 +157,8 @@ jobs:
           images: ${{ env.ACR_NAME }}.azurecr.io/sobi-backend:latest
 
       - name: Log deployment complete
+ develop
         run: echo "Deployment to Azure Web App completed successfully."
+
+        run: echo "Deployment to Azure Web App completed successfully."
+ main

@@ -1,9 +1,34 @@
-# .gitignore
-node_modules
-.env
-.terraform/
-*.exe
-*.tfstate
-*.tfstate.backup
-terraform.exe
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
+# dotenv environment files
+.env
+.env.*
+
+# Docker
+*.local
+docker-compose.override.yml
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Terraform
+terraform.tfstate
+terraform.tfstate.*
+.terraform/
+crash.log
+
+# VSCode
+.vscode/
+
+# Misc
+*.swp
+*.swo

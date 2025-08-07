@@ -1,19 +1,33 @@
 variable "resource_group" {
-  default = "sobi-rg"
+  description = "The name of the Azure Resource Group"
+  type        = string
 }
 
 variable "location" {
-  default = "southafricanorth"
-}
-
-variable "mysql_admin" {
-  default = "adminuser"
-}
-
-variable "mysql_password" {
-  default = "Ajokatembeek@2020"
+  description = "Azure region"
+  type        = string
+  default     = "East US"
 }
 
 variable "acr_name" {
-  default = "sobiacr"
+  description = "Azure Container Registry name"
+  type        = string
 }
+
+variable "mysql_admin" {
+  description = "MySQL admin username"
+  type        = string
+}
+
+variable "mysql_password" {
+  description = "MySQL admin password"
+  type        = string
+  sensitive   = true
+}
+
+variable "webapp_name" {
+  description = "Azure Web App name"
+  type        = string
+}
+
+# Add more variables as needed for your setup

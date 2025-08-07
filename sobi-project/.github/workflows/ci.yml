@@ -1,4 +1,4 @@
-name: CI/CD Pipeline - Sobi
+name: CI/CD Pipeline - sobi
 
 on:
   push:
@@ -42,7 +42,7 @@ jobs:
         uses: aquasecurity/trivy-action@master
         with:
           scan-type: 'fs'
-          scan-ref: './src'
+          scan-ref: '.'
           format: 'sarif'
           output: 'trivy-results.sarif'
 
